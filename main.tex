@@ -1,10 +1,12 @@
 %\documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
 %\documentclass[conference]{IEEEtran}\newcommand{\journal}{false}
-\documentclass[a4paper]{coursepaper}
+%\documentclass[a4paper]{coursepaper}
 %\documentclass[12pt,answers]{exam}
 %\documentclass[a4paper,11pt]{article}
 %\documentclass[a4paper,11pt]{book}
-\usepackage[a4paper,margin={2cm,2cm}]{geometry}
+\documentclass[paper=256mm:192mm,fontsize=20pt,pagesize,parskip=half-]{scrartcl}
+
+%\usepackage[a4paper,margin={2cm,2cm}]{geometry}
 \usepackage{lmodern}
 \usepackage{marvosym}
 \usepackage[utf8x]{inputenc}
@@ -182,6 +184,147 @@ acronym % use acronym functionality
 
 \input glossary
 
+\makeatletter
+\@ifclassloaded{scrartcl}
+{
+
+  \linespread{1.12} % Increase line spacing for readability
+
+  \definecolor{mygreen}{RGB}{44,85,17}
+  \definecolor{myblue}{RGB}{34,31,217}
+  \definecolor{mybrown}{RGB}{194,164,113}
+  \definecolor{myred}{RGB}{255,66,56}
+  % Use these colors within the presentation by enclosing text in the commands below
+  \newcommand*{\mygreen}[1]{\textcolor{mygreen}{#1}}
+  \newcommand*{\myblue}[1]{\textcolor{myblue}{#1}}
+  \newcommand*{\mybrown}[1]{\textcolor{mybrown}{#1}}
+  \newcommand*{\myred}[1]{\textcolor{myred}{#1}}
+
+  \usepackage[ % Page margins settings
+  includeheadfoot,
+  top=3.5mm,
+  bottom=3.5mm,
+  left=5.5mm,
+  right=5.5mm,
+  headsep=6.5mm,
+  footskip=8.5mm
+  ]{geometry}
+
+  \usepackage{lmodern} % Default font: latin modern font
+  %\usepackage{fourier} % Alternative font: utopia
+  %\usepackage{charter} % Alternative font: low-resolution roman font
+  \renewcommand{\familydefault}{\sfdefault} % Sans serif - this may need to be commented to see the alternative fonts
+  \usepackage{ulem}
+
+  \renewcommand{\familydefault}{\sfdefault} % Sans serif - this may need to be commented to see the alternative fonts
+  \usepackage{ulem}
+  \usepackage{url}
+  \usepackage{sidecap}
+  \usepackage{vwcol}
+
+%------------------------------------------------
+% Various required packages
+  \usepackage{amsthm} % Required for theorem environments
+  \usepackage{bm} % Required for bold math symbols (used in the footer of the slides)
+  %\usepackage{graphicx} % Required for including images in figures
+  %\usepackage{tikz} % Required for colored boxes
+  \usepackage{booktabs} % Required for horizontal rules in tables
+  %\usepackage{multicol} % Required for creating multiple columns in slides
+  \usepackage{lastpage} % For printing the total number of pages at the bottom of each slide
+  \usepackage{microtype} % Better typography
+  \usepackage{tocstyle} % Required for customizing the table of contents
+%------------------------------------------------
+
+
+%------------------------------------------------
+% Slide layout configuration
+\usepackage{scrpage2} % Required for customization of the header and footer
+\pagestyle{scrheadings} % Activates the pagestyle from scrpage2 for custom headers and footers
+\clearscrheadfoot % Remove the default header and footer
+\setkomafont{pageheadfoot}{\normalfont\color{black}\sffamily} % Font settings for the header and footer
+
+% Sets vertical centering of slide contents with increased space between paragraphs/lists
+\makeatletter
+\renewcommand*{\@textbottom}{\vskip \z@ \@plus 1fil}
+\newcommand*{\@texttop}{\vskip \z@ \@plus .5fil}
+\addtolength{\parskip}{\z@\@plus .25fil}
+\makeatother
+
+% Remove page numbers and the dots leading to them from the outline slide
+\makeatletter
+\newtocstyle[noonewithdot]{nodotnopagenumber}{\settocfeature{pagenumberbox}{\@gobble}}
+\makeatother
+\usetocstyle{nodotnopagenumber}
+
+%------------------------------------------------
+% Header configuration - if you don't want a header remove this block
+\ihead{
+\hspace{-2mm}
+\begin{tikzpicture}[remember picture,overlay]
+\node [xshift=\paperwidth/2,yshift=-\headheight] (mybar) at (current page.north west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=2\headheight,top color=mygreen!64,bottom color=mygreen]{}; % Colored bar
+\node[below of=mybar,yshift=-2/\headheight,rectangle,shade,inner sep=0pt,minimum width=\paperwidth,minimum height =1.5mm,top color=black!50,bottom color=green]{}; % Shadow under the colored bar
+shadow
+\end{tikzpicture}
+\color{white}\runninghead} % Header text defined by the \runninghead command below and colored white for contrast
+
+\ifoot{% Left side
+\hspace{-2mm}
+\begin{tikzpicture}[remember picture,overlay]
+\node [xshift=\paperwidth/2,yshift=\footheight] at (current page.south west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=3pt,top color=mygreen,bottom color=mygreen]{}; % Green bar
+\end{tikzpicture}
+\myauthor\ \raisebox{0.2mm}{$\bm{\vert}$}\ \myuni % Left side text
+}
+
+\ofoot[\pagemark/\pageref{LastPage}\hspace{-2mm}]{\pagemark/\pageref{LastPage}\hspace{-2mm}} % Right side
+
+% The code for the box which can be used to highlight an element of a slide (such as a theorem)
+\newcommand*{\mybox}[2]{ % The box takes two arguments: width and content
+\par\noindent
+\begin{tikzpicture}[mynodestyle/.style={rectangle,draw=mygreen,thick,inner sep=2mm,text justified,top color=white,bottom color=white,above}]\node[mynodestyle,at={(0.5*#1+2mm+0.4pt,0)}]{ % Box formatting
+\begin{minipage}[t]{#1}
+#2
+\end{minipage}
+};
+\end{tikzpicture}
+\par\vspace{-1.3em}}
+
+%------------------------------------------------
+\renewcommand{\maketitle}{%
+% Title slide - you may have to tweak a few of the numbers if you wish to make changes to the layout
+\thispagestyle{empty} % No slide header and footer
+\begin{tikzpicture}[remember picture,overlay] % Background box
+\node [xshift=\paperwidth/2,yshift=\paperheight/2] at (current page.south west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=\paperheight/3,top color=mygreen,bottom color=mygreen]{}; % Change the height of the box, its colors and position on the page here
+\end{tikzpicture}
+% Text within the box
+\begin{flushright}
+\vspace{2.5cm}
+\color{white}\sffamily
+{\bfseries\Large \hell\par} % Title
+\vspace{0.3cm}
+\normalsize
+\namecapa
+\par % Author name
+\mydate\par % Date
+\vfill
+\end{flushright}
+
+\clearpage
+}
+%------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% PRESENTATION INFORMATION
+%----------------------------------------------------------------------------------------
+
+\newcommand*{\mytitle}{\hell} % Title
+\newcommand*{\runninghead}{\ver} % Running head displayed on almost all slides
+\newcommand*{\myauthor}{\names} % Presenters name(s)
+\newcommand*{\mydate}{\today} % Presentation date
+\newcommand*{\myuni}{Universiade de Brasília --- Campus Gama} % University or department
+
+}
+\makeatother
+
 \makeindex
 \begin{document}
 
@@ -196,9 +339,10 @@ acronym % use acronym functionality
 %\ifthenelse{\equal{\ieee}{true}}{
 % \ifthenelse{\equal{\journal}{true}}{\review}{}
 %}{}
+
+
 \onecolumn    %Conferir se pode ser feito em duas colunas
   \maketitle
-  
 
 %\pagestyle{myheadings}
 \setcounter{page}{1}
