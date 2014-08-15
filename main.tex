@@ -1,12 +1,11 @@
-%\documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
+% \documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
 %\documentclass[conference]{IEEEtran}\newcommand{\journal}{false}
-%\documentclass[a4paper]{coursepaper}
+\documentclass[a4paper]{coursepaper}
 %\documentclass[12pt,answers]{exam}
 %\documentclass[a4paper,11pt]{article}
-%\documentclass[a4paper,11pt]{book}
-\documentclass[paper=256mm:192mm,fontsize=20pt,pagesize,parskip=half-]{scrartcl}
+% \documentclass[a4paper,11pt]{book}
+%\documentclass[paper=256mm:192mm,fontsize=20pt,pagesize,parskip=half-]{scrartcl}
 
-%\usepackage[a4paper,margin={2cm,2cm}]{geometry}
 \usepackage{lmodern}
 \usepackage{marvosym}
 \usepackage[utf8x]{inputenc}
@@ -182,6 +181,11 @@ acronym % use acronym functionality
   \def\alphainsection{0}
 }%
 
+\usepackage{nameref}
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\makeatother
+
 \input glossary
 
 \makeatletter
@@ -265,7 +269,7 @@ acronym % use acronym functionality
 \node[below of=mybar,yshift=-2/\headheight,rectangle,shade,inner sep=0pt,minimum width=\paperwidth,minimum height =1.5mm,top color=black!50,bottom color=green]{}; % Shadow under the colored bar
 shadow
 \end{tikzpicture}
-\color{white}\runninghead} % Header text defined by the \runninghead command below and colored white for contrast
+\color{white}\currentname} % Header text defined by the \runninghead command below and colored white for contrast
 
 \ifoot{% Left side
 \hspace{-2mm}
@@ -366,12 +370,12 @@ shadow
   
 %\onecolumn   %Para texto em uma coluna
 %\twocolumn   %Para texto em duas colunas
-%\begin{multicols}{2}
+\begin{multicols}{2}
 %\begin{alphasection}
   \input conteudo/conteudo
   \rowcolors{0}{white}{white}
 %\end{alphasection}
-%\end{multicols}
+\end{multicols}
 %\onecolumn
 %\printglossaries
 %\glsdescwidth
@@ -385,7 +389,7 @@ shadow
 %superheaderborder
 %longheaderborder
 
-  \bibliographystyle{abnt-alf}%{IEEEtran}%{abnt-num}%{ieeetr}%{abnt-alf}
+  \bibliographystyle{abnt-num}%{IEEEtran}%{abnt-num}%{ieeetr}%{abnt-alf}
   \bibliography{bibliography}   % expects file "bibliography.bib" 
 
 \end{document}
