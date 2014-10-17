@@ -3,7 +3,158 @@
 \input glossary
 
 \makeglossaries
+%---------------------------------------------
 
+
+\makeatletter
+\@ifclassloaded{coursepaper}
+{
+
+  \studentnumber{\allmatriculas} %Matricula
+  \instructor{\professor}
+  \coursenumber{\hell}
+  \college{\universidade}
+  %% Redefinindo Titulo
+  \def\@maketitle{%
+    %\newpage
+    %\null
+    \begin{center}
+    \includegraphics[width=\textwidth]{./fga.jpg}%  
+    \end{center}
+    {\sffamily \Huge\curso\par}
+    \begin{flushleft}%
+      \begin{spacing}{1}%
+      {\sffamily \LARGE \@title \par}%
+      % {\sffamily \@college\\}%
+      \sffamily Semestre: $2^o/2014$\hspace{1cm} Turma: \turma\\
+      % \vskip 1em%
+      \sffamily Professor: \@instructor\\%
+      {\sffamily \lineskip .75em\@author ~-~\@studentnumber}\\%
+      \sffamily \@date\\
+      
+      \par%
+      \end{spacing}%
+    \end{flushleft}\hrule\vskip 1em\par
+    \par
+      \renewcommand{\imprimeabstract}{
+    \begin{abstract}
+        \input{conteudo/abstract}
+    \end{abstract}
+    }
+    \vskip 1.5em}
+
+  \usepackage{fancyhdr}
+  \fancyhead{\ver}
+  \fancyfoot{ }
+  \fancyhead[LE,RO]{Página \thepage ~de \pageref{LastPage}}
+  \fancyhead[LO]{\hell}
+  \fancyhead[RE]{\slshape\leftmark}
+  \pagestyle{fancy}
+
+}
+% end coursepaper
+
+\@ifclassloaded{exam}
+{%
+  \printanswers %apresentar respostas
+  \renewcommand{\solutiontitle}{\noindent\textbf{Resposta:}\par\noindent}
+  \usepackage{setspace}
+
+  \pagestyle{head}
+  \firstpageheader{}{\includegraphics[width=\textwidth]{./fga.jpg}}{}
+  \runningheader{\hell}{Página \thepage\ de \numpages}{\entrega}
+  \runningheadrule
+
+  \newcommand{\imprimeabstract}{
+    % \begin{abstract}
+    %     \input{conteudo/abstract}
+    % \end{abstract}
+    }
+
+  %% Redefinindo Titulo
+  \def\@maketitle{%
+    \newpage
+    \null
+    \includegraphics[width=\textwidth]{./fga.jpg}%
+    \vskip 2em%
+    \begin{flushleft}%
+      \begin{spacing}{1}%
+      {\sffamily \LARGE \@title \par}%
+      \vskip 1em%
+      {\sffamily \large\lineskip .75em\ziul ~-~ \luizmatricula}\\%
+      %\vskip 1em%
+      \sffamily \@date\\
+      \vskip 1em%
+      \sffamily \universidade\\%
+      \sffamily \hell\hskip 6pt%
+        \\%
+      \sffamily Professor: \professor%
+      \par%
+      \end{spacing}%
+    \end{flushleft}\hrule\vskip 1em\par
+    \par
+    \vskip 1.5em}
+}
+%end exam
+{
+  % \usepackage{setspace}
+  \@ifclassloaded{IEEEtran}
+  {
+    \title{%\includegraphics[width=18cm]{./fga}\\
+    \hell\\\ver}
+    %%------------------------------------------------------------------------------
+    %%  Resolveu o problema de a linguagem não estar declarada
+    \makeatletter
+    \def\markboth#1#2{\def\leftmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#1}}%
+    \def\rightmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#2}}}
+    \makeatother
+    \newcommand{\ieee}{true}
+    \newcommand{\imprimeabstract}{
+      \IEEEcompsoctitleabstractindextext{%
+      \begin{abstract}
+        \input{conteudo/abstract}
+      \end{abstract}
+      %%-------------------------------------
+      \begin{IEEEkeywords} %palavras chaves
+        \centering\keyw %,\LaTeX.
+      \end{IEEEkeywords}}
+      
+      \thispagestyle{empty}
+      % \IEEEdisplaynotcompsoctitleabstractindextext
+      \IEEEdisplaynontitleabstractindextext
+      \IEEEpeerreviewmaketitle
+    }
+    \author{
+      %journal
+      \ifthenelse{\equal{\journal}{true}}{
+        \names\\
+      }{
+      %conference
+      \IEEEauthorblockN{\luiz}
+      \IEEEauthorblockA{Matricula: \luizmatricula\\E-mail: \eluiz}
+      % \and
+      % \IEEEauthorblockN{\canela}
+      % \IEEEauthorblockA{Matricula: \canelamatricula\\E-mail: \ecanela}
+      }
+    }
+  }
+  {
+    \newcommand{\ieee}{false}
+    \newcommand{\imprimeabstract}{
+    \begin{abstract}
+        \input{conteudo/abstract}
+    \end{abstract}
+    }
+    
+  }
+
+}
+\makeatother
+
+
+
+
+%--------------------------------------------
 %Definições para código com fundo listrado
 \newcommand\realnumberstyle[1]{#1}
 \makeatletter
