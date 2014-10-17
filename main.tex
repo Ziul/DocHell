@@ -1,10 +1,11 @@
 \documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
 % \documentclass[conference]{IEEEtran}\newcommand{\journal}{false}
+% \documentclass[12pt,openright,twoside,a4paper,english,french,spanish]{abntex2}
 % \documentclass[a4paper]{coursepaper}
 % \documentclass[12pt,answers]{exam}
-%\documentclass[a4paper,11pt]{article}
+% \documentclass[a4paper,11pt]{article}
 % \documentclass[a4paper,11pt]{book}
-% \documentclass[paper=256mm:192mm,fontsize=20pt,pagesize,parskip=half-]{scrartcl}
+% \documentclass[paper=256mm:192mm,fontsize=20pt,pagesize,parskip=half-]{scrartcl} %deprected
 \input packages
 
 \input nomes
@@ -12,11 +13,15 @@
 
 \begin{document}
 
-\review
+\makeatletter
+% \@ifclassloaded{IEEEtran}{}
+\makeatother
+
 \onecolumn    %Conferir se pode ser feito em duas colunas
-  \maketitle
-% \review
-% \@setabstract
+\imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
+\maketitle
+% \imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
+
 
 
 %\pagestyle{myheadings}
@@ -59,11 +64,22 @@
 %   \ParallelLText{Texto 2}
 % \end{Parallel}
 
-\setlength{\glsdescwidth}{0.8\textwidth}%
-\printglossary[style=superheaderborder]
 
-%superheaderborder
-%longheaderborder
+\glossarystyle{altlist}
+\providetranslation{Notation (glossaries)}{Notação}
+\providetranslation{Description (glossaries)}{Descrição}
+\phantomsection
+\addcontentsline{toc}{chapter}{Gloss\'ario\label{glossary}}
+% \setlength{\glsdescwidth}{0.48\textwidth}%
+\printglossary[title=Gloss\'ario]
+% \newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Lista de Termos}\label{acrom}
+\printglossary[type=\acronymtype,title=Lista de Termos,toctitle=Lista de Termos]
+
+
+\glsaddall
+
 
   \bibliographystyle{abnt-num}%{IEEEtran}%{abnt-num}%{ieeetr}%{abnt-alf}
   \bibliography{bibliography}   % expects file "bibliography.bib" 
