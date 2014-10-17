@@ -8,7 +8,7 @@ do: *.tex
 	then \
 		pdflatex main;\
 		echo -n "Buscando citações";\
-		grep -v "\%" *.tex > search.temp;\
+		grep -v "\%" conteudo/*.tex > search.temp;\
 		if grep '\\cite{'  search.temp -qn;\
 		then \
 			echo " ";\
