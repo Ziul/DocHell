@@ -21,6 +21,7 @@
 \newcommand{\ziul}{{Luiz Fernando Gomes de Oliveira}}					%Sem link
 \newcommand{\luizmatricula}{10/46969}
 \newcommand{\eluiz}{ziuloliveira@gmail.com}
+\newcommand{\canela}{{Canela}}	
 
 %----------------------Foto e bibliografia do(s) autor(es)----------------------
 %%------------------------------------------------------------------------------
@@ -86,6 +87,11 @@
 	    \end{spacing}%
 	  \end{flushleft}\hrule\vskip 1em\par
 	  \par
+	  	\renewcommand{\review}{
+		\begin{abstract}
+				\input{conteudo/abstract}
+		\end{abstract}
+		}
 	  \vskip 1.5em}
 
  	\usepackage{fancyhdr}
@@ -109,6 +115,12 @@
 	\firstpageheader{}{\includegraphics[width=\textwidth]{./fga.jpg}}{}
 	\runningheader{\hell}{Página \thepage\ de \numpages}{\entrega}
 	\runningheadrule
+
+	\newcommand{\review}{
+		% \begin{abstract}
+		% 		\input{conteudo/abstract}
+		% \end{abstract}
+		}
 
 	%% Redefinindo Titulo
 	\def\@maketitle{%
@@ -151,7 +163,7 @@
 		\newcommand{\review}{
 			\IEEEcompsoctitleabstractindextext{%
 			\begin{abstract}
-				\input{abstract}
+				\input{conteudo/abstract}
 			\end{abstract}
 			%%-------------------------------------
 			\begin{IEEEkeywords} %palavras chaves
@@ -159,7 +171,8 @@
 			\end{IEEEkeywords}}
 			
 			\thispagestyle{empty}
-			\IEEEdisplaynotcompsoctitleabstractindextext
+			% \IEEEdisplaynotcompsoctitleabstractindextext
+			\IEEEdisplaynontitleabstractindextext
 			\IEEEpeerreviewmaketitle
 		}
 		\author{
@@ -169,9 +182,9 @@
 			%\thanks{Revisado em \today.}
 			\IEEEauthorblockN{\luiz}
 			\IEEEauthorblockA{Matricula: \luizmatricula\\E-mail: \eluiz}
-%			\and
-%			\IEEEauthorblockN{\canela}
-%			\IEEEauthorblockA{Matricula: \canelamatricula\\E-mail: \ecanela}
+			\and
+			\IEEEauthorblockN{\canela}
+			% \IEEEauthorblockA{Matricula: \canelamatricula\\E-mail: \ecanela}
 			}
 		}
 	}
@@ -180,11 +193,12 @@
 		% \author{\names}
 		\newcommand{\review}{
 		\begin{abstract}
-				\input{abstract}
+				\input{conteudo/abstract}
 		\end{abstract}
 		}
 		
 	}
+
 }
 \makeatother
 
