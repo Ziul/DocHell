@@ -40,8 +40,7 @@ stringstyle=\color{cyan},
 basicstyle=\small\ttfamily}
 
 
-%setting up links
-\usepackage[
+\hypersetup{
 pdfauthor={\ziul},
 pdftitle={\hell-\ver},
 pdfsubject={\ver},
@@ -60,7 +59,7 @@ bookmarks=true,
 linktocpage=true,   % makes the page number as hyperlink in table of content
 hyperindex=true,
 unicode=false
-]{hyperref}
+}
 
 
 %-------------------------------------------------------------------------------
@@ -162,6 +161,22 @@ unicode=false
 \makeatletter
 \@ifclassloaded{scrartcl}
 {
+
+
+%------------------------------------------------
+% Various required packages
+\usepackage{amsthm} % Required for theorem environments
+\usepackage{bm} % Required for bold math symbols (used in the footer of the slides)
+%\usepackage{graphicx} % Required for including images in figures
+%\usepackage{tikz} % Required for colored boxes
+\usepackage{booktabs} % Required for horizontal rules in tables
+%\usepackage{multicol} % Required for creating multiple columns in slides
+\usepackage{lastpage} % For printing the total number of pages at the bottom of each slide
+\usepackage{microtype} % Better typography
+\usepackage{tocstyle} % Required for customizing the table of contents
+\usepackage{scrpage2} % Required for customization of the header and footer
+%------------------------------------------------
+
 
   \linespread{1.12} % Increase line spacing for readability
 
