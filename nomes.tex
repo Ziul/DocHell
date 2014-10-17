@@ -1,6 +1,6 @@
 %%------------------------------------------------------------------------------
 %%----------------Variaveis para o LaTeX no Relatório---------------------------
-\newcommand{\universidade}{Universidade de Bras\'ilia - Campus Gama - FGA}
+\newcommand{\universidade}{Universidade de Bras\'ilia - Campus Gama}
 \newcommand{\hell}{Nome do Arquivo}		%nome do arquivo
 \newcommand{\autor}{\ziul}							%criador do pdf - só observado nos detalhes do pdf
 \newcommand{\assunto}{Nome da Materia/Experimento}			%Nome do experimento
@@ -66,7 +66,10 @@
 	\def\@maketitle{%
 	  %\newpage
 	  %\null
-	  \includegraphics[width=\textwidth]{./fga.jpg}%
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{./fga.jpg}%	
+	  \end{center}
+	  
 	  \vskip 2em%
 	  \begin{flushleft}%
 	  	\begin{spacing}{1}%
