@@ -1,6 +1,0 @@
-language: python
-before_script:
- - make clean
-install:
- - make
-
