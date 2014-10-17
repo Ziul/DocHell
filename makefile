@@ -1,7 +1,10 @@
 # É só escrever o comando "make". Entro com "make clean" para limpar a sujeira e
 # "make buildclean" para deletar o pdf
 
-all: clean optimize
+all: clean history optimize
+
+history:
+	./latex-git-log --author --width=5 > ./conteudo/commit_log.tex
 
 do: *.tex
 	if test -f *.bib ;\
@@ -36,7 +39,7 @@ do: *.tex
 	@make clean
 
 # Compila a cada alteração de qualquer arquivo *.tex ou de qualquer *.vhd dentro da pasta 'src'
-main.pdf: *.tex *.bib clean
+main.pdf: conteudo/*.tex *.bib clean
 	clear
 #	pdflatex -interaction errorstopmode -interaction=batchmode main.tex
 	pdflatex main.tex
