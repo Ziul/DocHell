@@ -19,6 +19,7 @@
 \usepackage[usenames,dvipsnames,table]{xcolor}
 \usepackage{lastpage}
 \usepackage{makeidx}
+\usepackage{parallel}
 
 %Definições para código com fundo listrado
 \newcommand\realnumberstyle[1]{#1}
@@ -399,7 +400,12 @@ shadow
 %\glsdescwidth
 
 
+%%% Para textos em paralelo, utiilize:
 
+% \begin{Parallel}{7cm}{7cm}
+%   \ParallelRText{Texto 1}
+%   \ParallelLText{Texto 2}
+% \end{Parallel}
 
 \setlength{\glsdescwidth}{0.8\textwidth}%
 \printglossary[style=superheaderborder]
