@@ -34,8 +34,18 @@
 
 %%------------------------------------------------------------------------------
 %%-----------------------------Organização--------------------------------------
-\newcommand{\names}{\luiz~- \luizmatricula }
-%\newcommand{\allmatriculas}{\luizmatricula,\canelamatricula}
+\makeatletter
+\@ifclassloaded{scrartcl}% Slide
+{
+	\newcommand{\names}{\luiz}
+	\newcommand{\namecapa}{\ziul \\ \ziul}
+	%\newcommand{\allmatriculas}{\luizmatricula,\canelamatricula}
+}
+{
+	\newcommand{\names}{\luiz~- \luizmatricula }
+}
+\makeatother
+
 
 \newcommand{\cor}{vermelho}
 \newcommand{\comprimeto}{20m}
