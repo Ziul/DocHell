@@ -1,11 +1,13 @@
 %%------------------------------------------------------------------------------
 %%----------------Variaveis para o LaTeX no Relatório---------------------------
 \newcommand{\universidade}{Universidade de Bras\'ilia - Campus Gama}
-\newcommand{\hell}{Nome do Arquivo}		%nome do arquivo
+\newcommand{\hell}{Nome da Materia}		%nome do arquivo
 \newcommand{\autor}{\ziul}							%criador do pdf - só observado nos detalhes do pdf
-\newcommand{\assunto}{Nome da Materia/Experimento}			%Nome do experimento
+\newcommand{\assunto}{Experimento}			%Nome do experimento
 \newcommand{\ver}{Titulo~- \assunto}						%numeração do experimento
 \newcommand{\professor}{Professor}
+\newcommand{\curso}{ENGENHARIA DE SOFTWARE}
+\newcommand{\turma}{D}
 
 %%------------------------------------------------------------------------------
 %%------------------------Detalhes para serem revistos--------------------------
@@ -69,19 +71,17 @@
 	  \begin{center}
 	  \includegraphics[width=\textwidth]{./fga.jpg}%	
 	  \end{center}
-	  
-	  \vskip 2em%
+	  {\sffamily \Huge\curso\par}
 	  \begin{flushleft}%
 	  	\begin{spacing}{1}%
 	    {\sffamily \LARGE \@title \par}%
-	    \vskip 1em%
-	    {\sffamily \large\lineskip .75em\@author ~-~ \@studentnumber}\\%
-	    %\vskip 1em%
+	    % {\sffamily \@college\\}%
+	    \sffamily Semestre: $2^o/2014$\hspace{1cm} Turma: \turma\\
+	    % \vskip 1em%
+	    \sffamily Professor: \@instructor\\%
+	    {\sffamily \lineskip .75em\@author ~-~\@studentnumber}\\%
 	    \sffamily \@date\\
-	    \vskip 1em%
-	    \sffamily \@college\\%
-	    \sffamily \@coursenumber\hskip 6pt\\%
-	    \sffamily Professor: \@instructor%
+	    
 	    \par%
 	    \end{spacing}%
 	  \end{flushleft}\hrule\vskip 1em\par
@@ -177,7 +177,7 @@
 	}
 	{
 		\newcommand{\ieee}{false}
-		\author{\names}
+		% \author{\names}
 		\newcommand{\review}{
 		\begin{abstract}
 				\input{abstract}
