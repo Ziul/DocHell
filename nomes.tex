@@ -1,0 +1,120 @@
+%%------------------------------------------------------------------------------
+%%----------------Variaveis para o LaTeX no Relatório---------------------------
+\newcommand{\hell}{Nome do Arquivo}		%nome do arquivo
+\newcommand{\autor}{\ziul}							%criador do pdf - só observado nos detalhes do pdf
+\newcommand{\assunto}{Nome da Materia/Experimento}			%Nome do experimento
+\newcommand{\ver}{Titulo~- \assunto}						%numeração do experimento
+
+
+%%------------------------------------------------------------------------------
+%%------------------------Detalhes para serem revistos--------------------------
+\newcommand{\keyw}{Palavras,  Chaves, \assunto}	%Keywords
+\newcommand{\entrega}{\today}		%data de entrega do relatório
+
+
+%%------------------------------------------------------------------------------
+%%------------------------------Nomes-------------------------------------------
+\newcommand{\luiz}{\href{http://lattes.cnpq.br/1109478949026592}{Luiz Fernando Gomes de Oliveira}}	%Para link
+\newcommand{\ziul}{{Luiz Fernando Gomes de Oliveira}}					%Sem link
+\newcommand{\luizmatricula}{10/46969}
+\newcommand{\eluiz}{ziuloliveira@gmail.com}
+
+%----------------------Foto e bibliografia do(s) autor(es)----------------------
+%%------------------------------------------------------------------------------
+%					  Deve de ser COLADO ao final do texto
+%%------------------------------------------------------------------------------
+%	\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{./fts/luiz}}]{\luiz}\label{luiz}
+%	É, sou eu. Aparecendo aqui só de brinks. Meio que trollando um relatório.
+%	\end{IEEEbiography}
+%
+%	\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{ffuu}}]{Helbert Junior}\label{panda}
+%	Pow, eu tinha que aparecer também né?
+%	\end{IEEEbiography}
+%%------------------------------------------------------------------------------
+
+%%------------------------------------------------------------------------------
+%%-----------------------------Organização--------------------------------------
+\newcommand{\names}{\luiz~- \luizmatricula }
+%\newcommand{\allmatriculas}{\luizmatricula,\canelamatricula}
+
+\newcommand{\cor}{vermelho}
+\newcommand{\comprimeto}{20m}
+
+\makeatletter
+\@ifclassloaded{coursepaper}
+{%
+	\college{Universidade de Bras\'ilia - Campus Gama - FGA}
+
+	\coursenumber{\hell~- \assunto}
+	\coursesection{ }
+	\coursename{ }
+	\studentnumber{ } %Matricula
+	\instructor{Nome do Professor}
+	\title{\assunto}
+	\author{\names}
+	\date{\entrega}
+	
+	\newcommand{\review}{
+		\begin{abstract}
+				\input{abstract}
+		\end{abstract}
+	}
+	\newcommand{\ieee}{false}
+}
+{
+	\usepackage{setspace}
+	\title{%\includegraphics[width=18cm]{./fts/cap.png}\\
+	\hell\\\ver}
+	\@ifclassloaded{IEEEtran}
+	{
+		%%------------------------------------------------------------------------------
+		%%	Resolveu o problema de a linguagem não estar declarada
+		\makeatletter
+		\def\markboth#1#2{\def\leftmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#1}}%
+		\def\rightmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#2}}}
+		\makeatother
+		\newcommand{\ieee}{true}
+		\newcommand{\review}{
+			\IEEEcompsoctitleabstractindextext{%
+			\begin{abstract}
+				\input{abstract}
+			\end{abstract}
+			%%-------------------------------------
+			\begin{IEEEkeywords} %palavras chaves
+				\centering\keyw %,\LaTeX.
+			\end{IEEEkeywords}}
+			
+			\thispagestyle{empty}
+			\IEEEdisplaynotcompsoctitleabstractindextext
+			\IEEEpeerreviewmaketitle
+		}
+		\author{
+			\ifthenelse{\equal{\journal}{true}}{
+				\names\\
+			}{
+			%\thanks{Revisado em \today.}
+			\IEEEauthorblockN{\luiz}
+			\IEEEauthorblockA{Matricula: \luizmatricula\\E-mail: \eluiz}
+%			\and
+%			\IEEEauthorblockN{\canela}
+%			\IEEEauthorblockA{Matricula: \canelamatricula\\E-mail: \ecanela}
+			}
+		}
+	}
+	{
+		\newcommand{\ieee}{false}
+		\author{\names}
+		\newcommand{\review}{
+		\begin{abstract}
+				\input{abstract}
+		\end{abstract}
+		}
+		
+	}
+}
+\makeatother
+
+%%------------------------------------------------------------------------------
+% Cabeçalho das páginas, se tiver no modelo
+\markboth{Universidade de Bras\'ilia - Campus Gama - FGA, \entrega}
+{Shell \MakeLowercase{\textit{et al.}}: \ver}

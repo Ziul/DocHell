@@ -1,0 +1,247 @@
+%\documentclass[journal,compsoc]{IEEEtran}\newcommand{\journal}{true}
+%\documentclass[conference]{IEEEtran}\newcommand{\journal}{false}
+\documentclass[a4paper]{coursepaper}
+%\documentclass[12pt,answers]{exam}
+%\documentclass[a4paper,11pt]{article}
+%\documentclass[a4paper,11pt]{book}
+\usepackage[a4paper,margin={2cm,2cm}]{geometry}
+\usepackage{lmodern}
+\usepackage{marvosym}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,brazil]{babel}  
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage[nocompress]{cite}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{lastpage}
+\usepackage{makeidx}
+
+%\usepackage[num,abnt-year-extra-label=yes,abnt-full-initials=no,abnt-emphasize=bf,abnt-and-type=e,abnt-url-package=url,abnt-repeated-author-omit=yes]{abntcite}%{abnt-alf}
+%\usepackage[num]{abntcite}
+\lstset{%
+language=C++,             %linguagem
+numbers=left,           %posição dos números
+stepnumber=1,           %frequencia de aparição dos números
+numbersep=0.5pt,
+basewidth={0.6em,0.45em},
+fontadjust=true,
+mathescape=true,
+tabsize=4,
+commentstyle=\color{blue},
+literate={á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {É}{{\'E}}1 {ê}{{\^e}}1 {õ}{{\~o}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {³}{{$^3$}}1 {Ω}{{$\Omega$}}1,
+breaklines=true,
+showstringspaces=false,
+stringstyle=\color{cyan},
+basicstyle=\small\ttfamily}
+
+\usepackage[pdftex]{graphicx}  
+\pdfcompresslevel=1
+
+\usepackage[center]{caption}
+\usepackage{float}
+\usepackage{fixltx2e}
+\usepackage{longtable}
+\usepackage{tabularx}
+%\usepackage[table]{xcolor}
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+
+\input nomes
+\usepackage[
+pdfauthor={\ziul},
+pdftitle={\hell-\ver},
+pdfsubject={\ver},
+pdfkeywords={\keyw},
+backref=true,
+draft=false,
+%pdfstartview=fitR,
+bookmarks=true,
+bookmarksopen=true,
+colorlinks=true,
+linkcolor=black,
+urlcolor=black,
+citecolor=black,%blue
+pdftex,
+bookmarks=true,
+linktocpage=true,   % makes the page number as hyperlink in table of content
+hyperindex=true,
+unicode=false
+]{hyperref}
+\usepackage[all]{hypcap}
+
+%\usepackage{glossaries}
+%\usepackage[toc]{glossaries}
+\usepackage[% 
+acronym % use acronym functionality 
+,section = section % use sections for all glossary lists 
+]{glossaries} 
+
+\makeglossaries
+
+
+%-------------------------------------------------------------------------------
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{calc,decorations.pathmorphing,patterns}
+\pgfdeclaredecoration{penciline}{initial}{
+    \state{initial}[width=+\pgfdecoratedinputsegmentremainingdistance,
+    auto corner on length=1mm,]{
+        \pgfpathcurveto%
+        {% From
+            \pgfqpoint{\pgfdecoratedinputsegmentremainingdistance}
+                      {\pgfdecorationsegmentamplitude}
+        }
+        {%  Control 1
+        \pgfmathrand
+        \pgfpointadd{\pgfqpoint{\pgfdecoratedinputsegmentremainingdistance}{0pt}}
+                    {\pgfqpoint{-\pgfdecorationsegmentaspect
+                     \pgfdecoratedinputsegmentremainingdistance}%
+                               {\pgfmathresult\pgfdecorationsegmentamplitude}
+                    }
+        }
+        {%TO 
+        \pgfpointadd{\pgfpointdecoratedinputsegmentlast}{\pgfpoint{1pt}{1pt}}
+        }
+    }
+    \state{final}{}
+}
+
+
+% \usepackage{tikzgraphicx}
+
+\tikzstyle{cloud} = [draw, ellipse,fill=blue!20, node distance=3cm,
+    minimum height=3em]
+\tikzstyle{estado} = [draw, ellipse,fill=blue!20, node distance=3cm,align=center]
+\tikzstyle{teste} = [draw, diamond,fill=green!20, node distance=3cm,align=left]
+%    minimum height=2em]
+\tikzstyle{ciclo} =[draw, rectangle,fill=blue!20, node distance=3cm,align=center,decorate,thick,minimum height=3em]
+\tikzstyle{phanton} = []   
+\tikzstyle{line} = [->,right] %[draw, -latex']
+\tikzstyle{retorno} = [loop above]
+\tikzstyle{arrow} = [bend left,->]
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=6.5em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+
+\pdfcompresslevel=9
+
+%-------------------------------------------------------------------------------
+
+\newcounter{alphasect}
+\def\alphainsection{0}
+
+\let\oldsection=\section
+\def\section{%
+  \ifnum\alphainsection=1%
+    \addtocounter{alphasect}{1}
+  \fi%
+\oldsection}%
+
+\renewcommand\thesection{%
+  \ifnum\alphainsection=1% 
+    \Alph{alphasect}
+  \else%
+    \arabic{section}
+  \fi%
+}%
+
+\newenvironment{alphasection}{%
+  \ifnum\alphainsection=1%
+    \errhelp={Let other blocks end at the beginning of the next block.}
+    \errmessage{Nested Alpha section not allowed}
+  \fi%
+  \setcounter{alphasect}{0}
+  \def\alphainsection{1}
+}{%
+  \setcounter{alphasect}{0}
+  \def\alphainsection{0}
+}%
+
+\input glossary
+
+\makeindex
+\begin{document}
+
+%--------------------------O titulo é inserido aqui!----------------------------
+% \selectlanguage{english}  %seleciona o idioma em inglês [para mater os termos abstract e o thanks em inglês]
+%{  \begin{figure*}
+%     \includegraphics[width=\textwidth]{./fts/unb.jpg}
+% \end{figure*}
+%}
+  
+%-------------------------------------------------------------------------------
+%\ifthenelse{\equal{\ieee}{true}}{
+% \ifthenelse{\equal{\journal}{true}}{\review}{}
+%}{}
+\onecolumn    %Conferir se pode ser feito em duas colunas
+  \maketitle
+  
+
+%\pagestyle{myheadings}
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+  \selectlanguage{brazil}   %voltando para o português.
+  
+  %\tableofcontents     % Sumario
+  %\listoffigures
+  %\listoftables
+  %\lstlistoflistings
+
+%\newpage
+
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+% \thispagestyle{empty}
+% \IEEEdisplaynotcompsoctitleabstractindextext
+% \IEEEpeerreviewmaketitle
+  
+%\onecolumn   %Para texto em uma coluna
+%\twocolumn   %Para texto em duas colunas
+%\begin{multicols}{2}
+%\begin{alphasection}
+  \input conteudo/conteudo
+  \rowcolors{0}{white}{white}
+%\end{alphasection}
+%\end{multicols}
+%\onecolumn
+%\printglossaries
+%\glsdescwidth
+
+
+
+
+\setlength{\glsdescwidth}{0.8\textwidth}%
+\printglossary[style=superheaderborder]
+
+%superheaderborder
+%longheaderborder
+
+  \bibliographystyle{abnt-alf}%{IEEEtran}%{abnt-num}%{ieeetr}%{abnt-alf}
+  \bibliography{bibliography}   % expects file "bibliography.bib" 
+
+\end{document}
