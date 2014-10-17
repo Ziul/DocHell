@@ -1,15 +1,15 @@
 \section{Sessão}\label{sec}
 
 %\IEEEPARstart{E}{ste}	%Inicio de paragrafo segundo IEEE
-\lipsum		%enchedor de linguiça em latin
+\lipsum[1-2]		%enchedor de linguiça em latin
 
 %\IEEEPARstart{I}{nicio}	%Inicio de paragrafo segundo IEEE
-\cite{python}
+Assim\cite{python}
 \gls{plugin}	%uso do glossario
 \cite{thepdf}
 \lipsum[3]		%enchedor de linguiça em latin, apenas paragrafo 3
 
-\clearpage %Forçar nova página, mesmo que \newpage
+% \clearpage %Forçar nova página, mesmo que \newpage
 \section{Nova sessão} % (fold)
 \label{sec:nova_sess_o}
 
@@ -22,6 +22,7 @@
 	{./conteudo/conteudo.tex}
 \begin{multicols}{2}
 
+\lipsum[3-6]		%enchedor de linguiça em latin, apenas paragrafo 4
 
 \end{multicols}
 \begin{usecase}
@@ -34,3 +35,16 @@
     \addfield{Pré-condições:}{Aplicativo instalado}
 \end{usecase}
 \begin{multicols}{2}
+
+\lipsum
+
+\end{multicols}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{conteudo/lena}
+    \caption{Clássica Lena}
+  \end{center}
+\end{figure}
+\begin{multicols}{2}
+
+\lipsum[6]

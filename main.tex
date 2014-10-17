@@ -21,6 +21,7 @@
 \onecolumn    %Conferir se pode ser feito em duas colunas
 \imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
 \maketitle
+% \input capa       %exemplo de personalização de capa/titulo
 % \imprimeabstract %Dependendo do modelo, tem que ficar antes ou depois de \maketitle
 
 
@@ -84,5 +85,6 @@
 
   \bibliographystyle{abnt-num}%{IEEEtran}%{abnt-num}%{ieeetr}%{abnt-alf}
   \bibliography{bibliography}   % expects file "bibliography.bib" 
+  \nocite{*}  % imprime TODAS as referencias
 
 \end{document}
