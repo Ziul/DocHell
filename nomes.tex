@@ -2,7 +2,7 @@
 %%----------------Variaveis para o LaTeX no Relatório---------------------------
 \newcommand{\universidade}{Universidade de Bras\'ilia - Campus Gama}
 \newcommand{\hell}{Nome da Materia}		%nome do arquivo
-\newcommand{\autor}{\ziul}							%criador do pdf - só observado nos detalhes do pdf
+% \renewcommand{\autor}{\ziul}							%criador do pdf - só observado nos detalhes do pdf
 \newcommand{\assunto}{Experimento}			%Nome do experimento
 \newcommand{\ver}{Titulo~- \assunto}						%numeração do experimento
 \newcommand{\professor}{Professor}
@@ -45,7 +45,9 @@
 	%\newcommand{\allmatriculas}{\luizmatricula,\canelamatricula}
 }
 {
-	\newcommand{\names}{\luiz~- \luizmatricula }
+	\newcommand{\names}{\luiz}
+	\newcommand{\allmatriculas}{\luizmatricula}
+
 }
 \makeatother
 
@@ -53,17 +55,18 @@
 \newcommand{\cor}{vermelho}
 \newcommand{\comprimeto}{20m}
 \title{\ver}
+\author{\names}
+\date{\entrega}
+
 
 \makeatletter
 \@ifclassloaded{coursepaper}
 {
-	\author{\ziul}
-	\studentnumber{\luizmatricula} %Matricula
+
+	\studentnumber{\allmatriculas} %Matricula
 	\instructor{\professor}
 	\coursenumber{\hell}
 	\college{\universidade}
-	\date{\entrega}
-
 	%% Redefinindo Titulo
 	\def\@maketitle{%
 	  %\newpage
@@ -86,6 +89,11 @@
 	    \end{spacing}%
 	  \end{flushleft}\hrule\vskip 1em\par
 	  \par
+	  	\renewcommand{\imprimeabstract}{
+		\begin{abstract}
+				\input{conteudo/abstract}
+		\end{abstract}
+		}
 	  \vskip 1.5em}
 
  	\usepackage{fancyhdr}
@@ -109,6 +117,12 @@
 	\firstpageheader{}{\includegraphics[width=\textwidth]{./fga.jpg}}{}
 	\runningheader{\hell}{Página \thepage\ de \numpages}{\entrega}
 	\runningheadrule
+
+	\newcommand{\imprimeabstract}{
+		% \begin{abstract}
+		% 		\input{conteudo/abstract}
+		% \end{abstract}
+		}
 
 	%% Redefinindo Titulo
 	\def\@maketitle{%
@@ -137,10 +151,10 @@
 %end exam
 {
 	% \usepackage{setspace}
-	\title{%\includegraphics[width=18cm]{./fts/cap.png}\\
-	\hell\\\ver}
 	\@ifclassloaded{IEEEtran}
 	{
+		\title{%\includegraphics[width=18cm]{./fga}\\
+		\hell\\\ver}
 		%%------------------------------------------------------------------------------
 		%%	Resolveu o problema de a linguagem não estar declarada
 		\makeatletter
@@ -148,10 +162,10 @@
 		\def\rightmark{\@IEEEcompsoconly{\sffamily}\MakeUppercase{\protect#2}}}
 		\makeatother
 		\newcommand{\ieee}{true}
-		\newcommand{\review}{
+		\newcommand{\imprimeabstract}{
 			\IEEEcompsoctitleabstractindextext{%
 			\begin{abstract}
-				\input{abstract}
+				\input{conteudo/abstract}
 			\end{abstract}
 			%%-------------------------------------
 			\begin{IEEEkeywords} %palavras chaves
@@ -159,32 +173,34 @@
 			\end{IEEEkeywords}}
 			
 			\thispagestyle{empty}
-			\IEEEdisplaynotcompsoctitleabstractindextext
+			% \IEEEdisplaynotcompsoctitleabstractindextext
+			\IEEEdisplaynontitleabstractindextext
 			\IEEEpeerreviewmaketitle
 		}
 		\author{
+			%journal
 			\ifthenelse{\equal{\journal}{true}}{
 				\names\\
 			}{
-			%\thanks{Revisado em \today.}
+			%conference
 			\IEEEauthorblockN{\luiz}
 			\IEEEauthorblockA{Matricula: \luizmatricula\\E-mail: \eluiz}
-%			\and
-%			\IEEEauthorblockN{\canela}
-%			\IEEEauthorblockA{Matricula: \canelamatricula\\E-mail: \ecanela}
+			\and
+			% \IEEEauthorblockN{\canela}
+			% \IEEEauthorblockA{Matricula: \canelamatricula\\E-mail: \ecanela}
 			}
 		}
 	}
 	{
 		\newcommand{\ieee}{false}
-		% \author{\names}
-		\newcommand{\review}{
+		\newcommand{\imprimeabstract}{
 		\begin{abstract}
-				\input{abstract}
+				\input{conteudo/abstract}
 		\end{abstract}
 		}
 		
 	}
+
 }
 \makeatother
 

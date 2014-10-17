@@ -5,7 +5,12 @@
 \usepackage{lmodern}
 \usepackage{marvosym}
 \usepackage[utf8x]{inputenc}
-\usepackage[english,brazil]{babel}  
+\makeatletter
+\@ifclassloaded{abntex2}{}
+{
+	\usepackage[english,brazil]{babel}  
+}
+\makeatother
 \usepackage[T1]{fontenc}
 \usepackage{indentfirst}
 \usepackage{lipsum}
@@ -38,5 +43,5 @@
 \usepackage{url}
 \usepackage{sidecap}
 \usepackage{vwcol}
-\usepackage[acronym,section = section]{glossaries} 
+\usepackage[acronym]{glossaries} 
 
