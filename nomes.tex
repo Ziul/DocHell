@@ -1,10 +1,11 @@
 %%------------------------------------------------------------------------------
 %%----------------Variaveis para o LaTeX no Relatório---------------------------
+\newcommand{\universidade}{Universidade de Bras\'ilia - Campus Gama - FGA}
 \newcommand{\hell}{Nome do Arquivo}		%nome do arquivo
 \newcommand{\autor}{\ziul}							%criador do pdf - só observado nos detalhes do pdf
 \newcommand{\assunto}{Nome da Materia/Experimento}			%Nome do experimento
 \newcommand{\ver}{Titulo~- \assunto}						%numeração do experimento
-
+\newcommand{\professor}{Professor}
 
 %%------------------------------------------------------------------------------
 %%------------------------Detalhes para serem revistos--------------------------
@@ -49,30 +50,90 @@
 
 \newcommand{\cor}{vermelho}
 \newcommand{\comprimeto}{20m}
+\title{\ver}
 
 \makeatletter
 \@ifclassloaded{coursepaper}
-{%
-	\college{Universidade de Bras\'ilia - Campus Gama - FGA}
-
-	\coursenumber{\hell~- \assunto}
-	\coursesection{ }
-	\coursename{ }
-	\studentnumber{ } %Matricula
-	\instructor{Nome do Professor}
-	\title{\assunto}
-	\author{\names}
-	\date{\entrega}
-	
-	\newcommand{\review}{
-		\begin{abstract}
-				\input{abstract}
-		\end{abstract}
-	}
-	\newcommand{\ieee}{false}
-}
 {
+	\author{\ziul}
+	\studentnumber{\luizmatricula} %Matricula
+	\instructor{\professor}
+	\coursenumber{\hell}
+	\college{\universidade}
+	\date{\entrega}
+
+	%% Redefinindo Titulo
+	\def\@maketitle{%
+	  %\newpage
+	  %\null
+	  \includegraphics[width=\textwidth]{./fga.jpg}%
+	  \vskip 2em%
+	  \begin{flushleft}%
+	  	\begin{spacing}{1}%
+	    {\sffamily \LARGE \@title \par}%
+	    \vskip 1em%
+	    {\sffamily \large\lineskip .75em\@author ~-~ \@studentnumber}\\%
+	    %\vskip 1em%
+	    \sffamily \@date\\
+	    \vskip 1em%
+	    \sffamily \@college\\%
+	    \sffamily \@coursenumber\hskip 6pt\\%
+	    \sffamily Professor: \@instructor%
+	    \par%
+	    \end{spacing}%
+	  \end{flushleft}\hrule\vskip 1em\par
+	  \par
+	  \vskip 1.5em}
+
+ 	\usepackage{fancyhdr}
+ 	\fancyhead{\ver}
+ 	\fancyfoot{ }
+ 	\fancyhead[LE,RO]{Página \thepage ~de \pageref{LastPage}}
+ 	\fancyhead[LO]{\hell}
+ 	\fancyhead[RE]{\slshape\leftmark}
+ 	\pagestyle{fancy}
+
+}
+% end coursepaper
+
+\@ifclassloaded{exam}
+{%
+	\printanswers %apresentar respostas
+	\renewcommand{\solutiontitle}{\noindent\textbf{Resposta:}\par\noindent}
 	\usepackage{setspace}
+
+	\pagestyle{head}
+	\firstpageheader{}{\includegraphics[width=\textwidth]{./fga.jpg}}{}
+	\runningheader{\hell}{Página \thepage\ de \numpages}{\entrega}
+	\runningheadrule
+
+	%% Redefinindo Titulo
+	\def\@maketitle{%
+	  \newpage
+	  \null
+	  \includegraphics[width=\textwidth]{./fga.jpg}%
+	  \vskip 2em%
+	  \begin{flushleft}%
+	  	\begin{spacing}{1}%
+	    {\sffamily \LARGE \@title \par}%
+	    \vskip 1em%
+	    {\sffamily \large\lineskip .75em\ziul ~-~ \luizmatricula}\\%
+	    %\vskip 1em%
+	    \sffamily \@date\\
+	    \vskip 1em%
+	    \sffamily \universidade\\%
+	    \sffamily \hell\hskip 6pt%
+				\\%
+	    \sffamily Professor: \professor%
+	    \par%
+	    \end{spacing}%
+	  \end{flushleft}\hrule\vskip 1em\par
+	  \par
+	  \vskip 1.5em}
+}
+%end exam
+{
+	% \usepackage{setspace}
 	\title{%\includegraphics[width=18cm]{./fts/cap.png}\\
 	\hell\\\ver}
 	\@ifclassloaded{IEEEtran}
