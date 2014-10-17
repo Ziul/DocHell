@@ -11,6 +11,16 @@
 	\usepackage[english,brazil]{babel}  
 }
 \makeatother
+
+
+\makeatletter
+\@ifclassloaded{report}
+{
+	\usepackage[a4paper,margin={2cm,2cm}]{geometry}
+	% \input capa
+}
+\makeatother
+
 \usepackage[T1]{fontenc}
 \usepackage{indentfirst}
 \usepackage{lipsum}
