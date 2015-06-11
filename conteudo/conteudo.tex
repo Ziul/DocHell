@@ -48,3 +48,18 @@ Assim\cite{python}
 \begin{multicols}{2}
 
 \lipsum[6]
+\end{multicols}
+
+\begin{longtable}{  c  L{1.5cm}  C{1.2cm}  R{2.5cm}  p{2cm}  m{3.5cm}  }
+\caption{Entidade: Motorista}\\
+\toprule
+Nome & Tipo & Tamanho  & Restrições de Domínio & Regra de Derivação & Observações \\ \midrule
+\rowcolor[gray]{0.9}
+CNH & Integer & 11 & - & - & Campo que armazena o número da CNH \\ 
+Nome & Char & 30 & - & - & Campo que armazena o nome do motorista \\ 
+\rowcolor[gray]{0.9}
+CPF & Char & 20 & Somente números & - & Campo que armazena o número do CPF \\ 
+RG & Char & 20 & Somente números & - & Campo que armazena o número de RG \\ \bottomrule
+\end{longtable}
+
+\begin{multicols}{2}
