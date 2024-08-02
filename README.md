@@ -14,4 +14,3 @@ Dependências:
 - texlive-publishers
 - texlive-fonts-recommended
 - texlive-generic-recommended
-- texlive-lang-german
