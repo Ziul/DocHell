@@ -71,3 +71,5 @@ There are many variations of passages of Lorem Ipsum available, but the majority
 def nice_method(a:str) -> bool:
     return len(a) > 3
 ```
+
+You may also include a whole file with \lstinputlisting[]{./.github/workflows/latex.yml}
