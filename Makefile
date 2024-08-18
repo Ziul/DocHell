@@ -62,7 +62,8 @@ clean:
 	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx *.lol *.bcf *.xml
 
 install:
-	apt update -qq
-	apt install -y pandoc pandoc-citeproc latexmk
+	#echo deb http://br.archive.ubuntu.com/ubuntu/ jammy multiverse > /etc/apt/sources.list
+	#apt update -qq
+	# apt install -y pandoc pandoc-citeproc latexmk
 	cp -v *.ttf /usr/local/share/fonts
 	fc-cache -fv

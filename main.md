@@ -53,14 +53,18 @@ $$ y = mx +b $$
 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
 
   
-\begin{equation}
-    x+1 = 2 \\
-    y+2 = 3 
+\begin{equation} \label{eq1}
+\begin{split}
+A & = \frac{\pi r^2}{2} \\
+ & = \frac{1}{2} \pi r^2
+\end{split}
 \end{equation}
 
 When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
 
 $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+
+Or you may cite an equation, like the \ref{eq1}.
 
 ### Where can I get some?
 
@@ -72,4 +76,4 @@ def nice_method(a:str) -> bool:
     return len(a) > 3
 ```
 
-You may also include a whole file with \lstinputlisting[]{./.github/workflows/latex.yml}
+You may also include a whole file with \lstinputlisting{./.github/workflows/latex.yml}
