@@ -4,7 +4,8 @@ BIBTEX = bibtex
 LATEX = xelatex
 DVIPS = dvips
 PS2PDF = ps2pdf
-TEMPLATE = ieee
+# TEMPLATE = ieee
+TEMPLATE = eisvogel
 
 VERSION = 0.1.0
 
@@ -29,7 +30,7 @@ endif # $J
 
 .PHONY: all clean dist-clean
 
-TEX_FILES := $(shell find . -type f -name "*.tex")
+TEX_FILES := $(shell find . -type f -name "*.tex" | grep -v "cover.tex")
 MD_FILES := $(shell find . -type f -name "*.md" | grep -v "README.md")
 
 all: convert
@@ -62,8 +63,8 @@ clean:
 	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx *.lol *.bcf *.xml
 
 install:
-	#echo deb http://br.archive.ubuntu.com/ubuntu/ jammy multiverse > /etc/apt/sources.list
-	#apt update -qq
-	# apt install -y pandoc pandoc-citeproc latexmk
+	# echo deb http://br.archive.ubuntu.com/ubuntu/ jammy multiverse > /etc/apt/sources.list
+	# apt update -qq
+	wget https://github.com/jgm/pandoc/releases/download/3.1.13/pandoc-3.1.13-1-amd64.deb && dpkg -i pandoc-3.1.13-1-amd64.deb
 	cp -v *.ttf /usr/local/share/fonts
 	fc-cache -fv

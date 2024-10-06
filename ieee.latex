@@ -130,7 +130,8 @@ $if(babel-newcommands)$
 $endif$
 \else
   \usepackage{polyglossia}
-  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+  % \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+  \setmainlanguage[variant=brazilian]{portuguese}
 $for(polyglossia-otherlangs)$
   \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
 $endfor$
@@ -408,6 +409,10 @@ $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
+$endif$
+
+$if(cover)$
+\include{cover}
 $endif$
 
 $if(keywords)$
