@@ -20,9 +20,7 @@ jobs:
 
     - name: Install TexLive and other dependencies
       run: |
-        apt-get update -qq
-        # apt-get install -y texlive-full
-        apt-get install -y latexmk pandoc
+        make install
 
     - name: Copy fonts and update font cache
       run: |

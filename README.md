@@ -32,6 +32,12 @@ This project provides a simple way to convert markdown files into documents form
 
 2. Make sure you have Pandoc and LaTeX installed on your system.
 
+3. You could also use docker with:
+
+ ```bash
+ docker run --rm -ti -v $PWD:/home -w /home thomasweise/docker-texlive-full bash
+ ```
+
 ## Usage
 
 To generate an IEEE-formatted article from a markdown file, follow these steps:
