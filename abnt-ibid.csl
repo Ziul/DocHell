@@ -2,11 +2,10 @@
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" demote-non-dropping-particle="never" default-locale="pt-BR">
   <!--Em caso de sobrenome composto, este nao sera desmontado para a montagem da citacao ou bibliografia como no caso de L. Van Der Pijl-->
   <info>
-    <title>Associação Brasileira de Normas Técnicas (numérico, Português - Brasil)</title>
+    <title>Associação Brasileira de Normas Técnicas (Português - Brasil)</title>
     <title-short>ABNT</title-short>
-    <id>http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-numerico</id>
-    <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas-numerico" rel="self"/>
-    <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas" rel="template"/>
+    <id>http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas</id>
+    <link href="http://www.zotero.org/styles/associacao-brasileira-de-normas-tecnicas" rel="self"/>
     <link href="https://forums.zotero.org/discussion/22148/how-to-apply-disambiguation-in-citation-just-when-works-of-different-authors-are-in-the-same-year/?Focus=147094#Comment_147094" rel="documentation"/>
     <author>
       <name>Juliana Geyna Régis</name>
@@ -37,14 +36,10 @@
       <name>Mario José</name>
       <email>gnumario [at-mark] gmail [dot-mark] com</email>
     </contributor>
-    <contributor>
-      <name>Brenton M. Wiernik</name>
-      <email>zotero@wiernik.org</email>
-    </contributor>
-    <category citation-format="numeric"/>
+    <category citation-format="author-date"/>
     <category field="generic-base"/>
-    <summary>The Brazilian Standard Style in accordance with ABNT-NBR 10520.2002 and ABNT-NBR 6023.2002, but with numeric in-text references</summary>
-    <updated>2024-09-11T16:04:12+00:00</updated>
+    <summary>The Brazilian Standard Style in accordance with ABNT-NBR 10520.2002 and ABNT-NBR 6023.2002</summary>
+    <updated>2022-07-11T17:15:26+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="pt-BR">
@@ -132,6 +127,28 @@ aparecera a expess o 'et. al.'. Na regra da ABNT essa expressao deve aparecer em
         <names variable="editor"/>
         <names variable="translator"/>
         <text macro="title"/>
+      </substitute>
+    </names>
+  </macro>
+  <!--A macro 'author-short' e responsavel por mostrar os nomes dos autores na citacao (no meio do texto). Nela aparecera apenas o ultimo nome
+do autor. Na regra da ABNT o sobrenome deve aparecer com todas as letras em caixa alta-->
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter="; " delimiter-precedes-last="never">
+        <name-part name="family" text-case="uppercase"/>
+        <name-part name="given" text-case="uppercase"/>
+      </name>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <choose>
+          <if type="book">
+            <text variable="title" form="short"/>
+          </if>
+          <else>
+            <text variable="title" form="short" quotes="true"/>
+          </else>
+        </choose>
       </substitute>
     </names>
   </macro>
@@ -247,6 +264,19 @@ em caixa alta. Utiliza-se antes do nome da conferencia a expressao "In". Segundo
       </else>
     </choose>
   </macro>
+  <!--A macro 'issued' e utilizada quando desejamos que apareca apenas o ano-->
+  <macro name="issued-year">
+    <choose>
+      <if variable="issued" match="any">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text value="[s.d.]"/>
+      </else>
+    </choose>
+  </macro>
   <!--A macro 'edition' e responsavel por mostrar o numero da edicao.-->
   <macro name="edition">
     <choose>
@@ -330,19 +360,33 @@ em caixa alta. Utiliza-se antes do nome da conferencia a expressao "In". Segundo
   </macro>
   <!--Citacao-->
   <!--et al. aparece a partir de 04 autores-->
-  <citation>
-    <layout prefix="(" suffix=")" delimiter=",">
-      <group delimiter=" ">
-        <text variable="citation-number"/>
-        <text macro="citation-locator"/>
+  <citation et-al-min="4" et-al-use-first="1" collapse="year" disambiguate-add-year-suffix="true">
+    <sort>
+      <key macro="author"/>
+      <!--Puxa o autor primeiro-->
+      <key variable="issued"/>
+      <!--Depois o ano-->
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <!--Entre parenteses separando os autores com ponto-e-virgula-->
+      <group>
+        <text suffix=", " macro="author-short"/>
+        <!--Seperando os autores das datas usando virgula-->
+        <text macro="issued-year"/>
+        <text prefix=", " macro="citation-locator"/>
       </group>
     </layout>
   </citation>
   <!--Bibliografia-->
   <!--et al. aparece a partir de 04 autores-->
-  <bibliography hanging-indent="false" et-al-min="4" et-al-use-first="1" entry-spacing="1" second-field-align="flush">
+  <bibliography hanging-indent="false" et-al-min="4" et-al-use-first="1" entry-spacing="1">
+    <sort>
+      <key macro="author"/>
+      <!--Puxa o autor primeiro-->
+      <key variable="issued"/>
+      <!--Depois o ano-->
+    </sort>
     <layout>
-      <text variable="citation-number" prefix="[" suffix="]"/>
       <choose>
         <!--Projeto de lei-->
         <if type="bill">

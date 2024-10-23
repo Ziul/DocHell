@@ -561,9 +561,12 @@ $if(natbib)$
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
 $if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{abntex2cite}
+% \usepackage{abntex2cite}
+% \usepackage{biblatex}
 $for(bibliography)$
-\addbibresource{$bibliography$}
+\bibliography{$bibliography$}
+% \addbibresource{$bibliography$}
 $endfor$
 $endif$
 $if(nocite-ids)$
@@ -1147,6 +1150,7 @@ $endif$
 $if(has-frontmatter)$
 \mainmatter
 $endif$
+
 $body$
 
 $if(has-frontmatter)$
@@ -1173,16 +1177,11 @@ $endif$
 $endif$
 $endif$
 $if(biblatex)$
-$if(beamer)$
-\begin{frame}[allowframebreaks]{$biblio-title$}
-  \bibliographytrue
-  \printbibliography[heading=none]
-\end{frame}
-$else$
 \addcontentsline{toc}{section}{$biblio-title$}
 \renewcommand*{\bibfont}{\normalfont}
-\printbibliography$if(biblio-title)$[sorting=nty,title=\Large $biblio-title$]$endif$
+\printbibliography$if(biblio-title)$[sorting=nty,title=\Large $biblio-title$]
 $endif$
+
 
 $if(nocite)$
  \nocite{*}

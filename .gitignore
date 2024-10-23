@@ -87,6 +87,8 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+*.xdv
+*.deb
 conteudo/commit_log.tex
 
 # temporary tex files

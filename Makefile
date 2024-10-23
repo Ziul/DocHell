@@ -49,7 +49,7 @@ convert:
 	@for file in $(MD_FILES); do \
 	    echo "Converting $$file" using $(TEMPLATE); \
 	    output=$${file%.md}.tex; \
-	    pandoc --read=markdown --write=latex --output=testdoc.tex --template=$(TEMPLATE).latex $$file -o $$output --listings --biblatex --csl abnt.csl ; \
+	    pandoc --read=markdown --write=latex --output=testdoc.tex --template=$(TEMPLATE).latex $$file -o $$output --listings --citeproc ; \
 	done
 
 $(TARGET): $(MAIN_FILE) $(SOURCES)
