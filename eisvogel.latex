@@ -561,9 +561,9 @@ $if(natbib)$
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
 $if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{abntex2cite}
-% \usepackage{abntex2cite}
-% \usepackage{biblatex}
+% \usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{abntex2cite}
+\usepackage[style=abnt,backend=biber]{biblatex}
+\usepackage{biblatex}
 $for(bibliography)$
 \bibliography{$bibliography$}
 % \addbibresource{$bibliography$}
@@ -645,7 +645,12 @@ $endif$
 $endif$
 
 
+\usepackage[% 
+acronym % use acronym functionality 
+,section = section % use sections for all glossary lists 
+]{glossaries} 
 
+\makeglossaries
 %%
 %% added
 %%
@@ -1112,6 +1117,7 @@ $include-before$
 $endfor$
 $if(toc)$
 $if(toc-title)$
+\renewcommand{\cleardoublepage}{\clearpage}
 \renewcommand*\contentsname{$toc-title$}
 $endif$
 $if(beamer)$
@@ -1140,9 +1146,11 @@ $endif$
 $endif$
 $if(lof)$
 \listoffigures
+\newpage
 $endif$
 $if(lot)$
 \listoftables
+\newpage
 $endif$
 $if(linestretch)$
 \setstretch{$linestretch$}
@@ -1156,30 +1164,31 @@ $body$
 $if(has-frontmatter)$
 \backmatter
 $endif$
+
 $if(natbib)$
-$if(bibliography)$
-$if(biblio-title)$
-$if(has-chapters)$
-\renewcommand\bibname{\small$biblio-title$}
-$else$
-\renewcommand\refname{\small$biblio-title$}
-$endif$
-$endif$
-$if(beamer)$
-\begin{frame}[allowframebreaks]{$biblio-title$}
-  \bibliographytrue
-$endif$
-  \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
-$if(beamer)$
-\end{frame}
+  $if(bibliography)$
+    $if(biblio-title)$
+      $if(has-chapters)$
+        \renewcommand\bibname{\small$biblio-title$}
+        $else$
+        \renewcommand\refname{\small$biblio-title$}
+      $endif$
+    $endif$
+    $if(beamer)$
+      \begin{frame}[allowframebreaks]{$biblio-title$}
+        \bibliographytrue
+    $endif$
+    \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+    $if(beamer)$
+      \end{frame}
+    $endif$
+  $endif$
 $endif$
 
-$endif$
-$endif$
 $if(biblatex)$
-\addcontentsline{toc}{section}{$biblio-title$}
-\renewcommand*{\bibfont}{\normalfont}
-\printbibliography$if(biblio-title)$[sorting=nty,title=\Large $biblio-title$]
+  \addcontentsline{toc}{section}{$biblio-title$}
+  \renewcommand*{\bibfont}{\normalfont}
+  \printbibliography$if(biblio-title)$[sorting=nty,title=\Large $biblio-title$]$endif$
 $endif$
 
 
@@ -1187,9 +1196,10 @@ $if(nocite)$
  \nocite{*}
 $endif$
 
-$endif$
-$for(include-after)$
-$include-after$
+\printglossary[style=superheaderborder]
 
+$for(include-after)$
+  $include-after$
 $endfor$
+
 \end{document}

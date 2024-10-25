@@ -27,7 +27,6 @@ type: SPECIFICATION
 status: DRAFT
 bibliography: bibliography.bib
 csl: abnt-ibid.csl
-biblio-style: abntex2-alf
 date: "2024"
 mainfont: Arial
 fontsize: 12pt
@@ -39,7 +38,9 @@ titlepage: true
 book: true
 titlepage-background: assets/cover.pdf
 toc: true
-toc-own-page: true
+lof: true
+biblio-style: abntex2-alf
+# toc-own-page: true
 disable-header-and-footer: true
 toc-title: Sumário
 biblio-title: Referências Bibliográficas
@@ -59,4 +60,14 @@ Sobre o algoritmo, as informações disponíveis na página da PGgames nos permi
 
 Entretanto, há um ponto importante a ser observado no trecho de código apresentado pela PGgames. Ambas as funções utilizam quatro parâmetros: serverSeed, clientSeed, nonce, cursor e count. Contudo, as variáveis clientSeed e nonce não são devidamente empregadas nas funções, de maneira que a aleatoriedade depende exclusivamente do valor de serverSeed. Assim, é altamente questionável considerar a solução apresentada no site como um caso de "provably fair".
 
-# Referências Bibliográficas
+Oberver a figura \ref{lena}.
+Oberver a figura \ref{fig:lena}.
+
+![Lena is over here \label{lena}](assets/lena.png)
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/lena.png}
+    \caption{Legenda da figura}
+    \label{fig:lena}
+\end{figure}
