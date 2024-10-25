@@ -369,6 +369,7 @@ $endif$
 \usepackage{calc} % for calculating minipage widths
 $if(beamer)$
 \usepackage{caption}
+\captionsetup{font=footnotesize}
 % Make caption package work with longtable
 \makeatletter
 \def\fnum@table{\tablename~\thetable}
@@ -390,6 +391,8 @@ $else$
 \usepackage{footnotebackref}
 $endif$
 $if(graphics)$
+\usepackage{caption}
+\captionsetup{font=footnotesize}
 \usepackage{graphicx}
 \makeatletter
 \newsavebox\pandoc@box
@@ -691,8 +694,10 @@ $endif$
 \definecolor{caption-color}{HTML}{777777}
 $if(beamer)$
 $else$
-\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=$if(caption-justification)$$caption-justification$$else$raggedright$endif$]{caption}
-\setcapindent{0em}
+\usepackage[font={stretch=0.8}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=centering]{caption}
+% \setcapindent{0em}
+\captionsetup{font=footnotesize}
+\usepackage{subcaption}
 $endif$
 
 %

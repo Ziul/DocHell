@@ -52,15 +52,16 @@ convert:
 	    pandoc --read=markdown --write=latex --output=testdoc.tex --template=$(TEMPLATE).latex $$file -o $$output --listings --biblatex --citeproc ; \
 	done
 
-$(TARGET): $(MAIN_FILE) $(SOURCES)
+$(TARGET): $(TEX_FILES) $(SOURCES)
 	$(MAKE) clean
-	$(LATEX) $(MAIN_FILE)
-	$(LATEX) -interaction=batchmode $(MAIN_FILE)
+	$(LATEX) $(TEX_FILES)
+	$(LATEX) -interaction=batchmode $(TEX_FILES)
 	@mv $(PDF_FILE) $(TARGET)
 
 clean:
 	rm -rf *~ *.dvi *.ps *.backup *.aux *.log *.out *.xdv *.fls *.fdb_latexmk
 	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx *.lol *.bcf *.xml
+	rm -rf *.acn *.acr *.alg *.glg *.glo *.gls *.ist
 
 install:
 	# echo deb http://br.archive.ubuntu.com/ubuntu/ jammy multiverse > /etc/apt/sources.list
