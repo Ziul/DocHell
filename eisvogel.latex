@@ -288,14 +288,14 @@ $endif$
 $if(indent)$
 $else$
 \makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
+% \@ifundefined{KOMAClassName}{% if non-KOMA class
+%   \IfFileExists{parskip.sty}{%
+%     \usepackage{parskip}
+%   }{% else
+%     \setlength{\parindent}{1cm}
+%     \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+% }{% if KOMA class
+%   \KOMAoptions{parskip=half}}
 \makeatother
 $endif$
 $if(verbatim-in-note)$
@@ -806,9 +806,10 @@ $endif$
 %
 % remove paragraph indentation
 %
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\usepackage{indentfirst}
+\setlength{\parindent}{1.5cm}
+% \setlength{\parskip}{6pt plus 2pt minus 1pt}
+% \setlength{\emergencystretch}{3em}  % prevent overfull lines
 
 %
 %
@@ -1029,7 +1030,7 @@ $if(titlepage-background)$
   \vfill
   \vskip 4em
   \begin{flushright}
-    \noindent {\Large \textbf{\textsf{$for(author)$$author.name$\\ $endfor$}}}
+    \noindent {\Large \textbf{\textsf{Autores: $for(author)$$author.name$\\ $endfor$}}}
     \vskip 2em
     \noindent{\Large \textbf{\textsf{$professor.title$: $professor.name$}}}
     \vskip 7em
