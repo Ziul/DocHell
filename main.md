@@ -19,6 +19,7 @@ author:
 professor: 
   name: Hélio Guilherme Dias Silva
   title: Professor
+disciplina: Qualidade de Software e Governança
 pdfsubject: Markdow example for LaTeX
 keywords: 
     - Markdown
@@ -47,7 +48,6 @@ biblio-title: Referências Bibliográficas
 biblatexoptions:
   - backend=biber
   - style=numeric
-resumo: Estudo de caso apresentado ao curso superior de Tecnologia em Análise e Desenvolvimento de Software, da Escola de Educação, Tecnologia e Comunicação da Universidade Católica de Brasília, como requisito parcial da disciplina Qualidade de Software e Governança.
 ---
 
 # Análise Técnica

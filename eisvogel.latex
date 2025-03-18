@@ -1045,16 +1045,15 @@ $if(titlepage-background)$
     \uppercase{\textbf{\textsf{$subtitle$}}}
   \end{center}
   \vfill
-  $if(resumo)$
   \begin{flushright}
     \begin{minipage}{0.5\textwidth}
-      \textsf{$resumo$}
+      Trabalho apresentado ao Curso Superior de Tecnologia em Análise e Desenvolvimento de Software, da Escola de Educação , Tecnologia e Comunicação da Universidade Católica de Brasília, como requisito parcial da disciplina $disciplina$.
+
 
       \textsf{$professor.title$: $professor.name$}
     \end{minipage}
   \end{flushright}
   \vskip 5em
-  $endif$
   \begin{center}
     $date$
   \end{center}
